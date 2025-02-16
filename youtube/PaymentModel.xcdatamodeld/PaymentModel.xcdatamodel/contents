@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Payment" representedClassName="Payment" syncable="YES" codeGenerationType="class">
+        <attribute name="monthsCovered" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="paidDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="payments" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="user" inverseEntity="Payment"/>
+    </entity>
+</model>

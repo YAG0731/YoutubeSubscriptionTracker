@@ -11,6 +11,10 @@
 		3724EA0E2D61AFBB00860463 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3724EA0D2D61AFBB00860463 /* ContentView.swift */; };
 		3724EA102D61AFBC00860463 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3724EA0F2D61AFBC00860463 /* Assets.xcassets */; };
 		3724EA132D61AFBC00860463 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3724EA122D61AFBC00860463 /* Preview Assets.xcassets */; };
+		3724EA1A2D61B44600860463 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3724EA192D61B44600860463 /* UserDetailView.swift */; };
+		3724EA1C2D61B4C500860463 /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3724EA1B2D61B4C500860463 /* PaymentManager.swift */; };
+		3724EA1F2D61B8D100860463 /* PaymentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3724EA1D2D61B8D100860463 /* PaymentModel.xcdatamodeld */; };
+		3724EA312D61C2C000860463 /* AddUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3724EA302D61C2C000860463 /* AddUserView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		3724EA0D2D61AFBB00860463 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3724EA0F2D61AFBC00860463 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3724EA122D61AFBC00860463 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3724EA192D61B44600860463 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
+		3724EA1B2D61B4C500860463 /* PaymentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
+		3724EA1E2D61B8D100860463 /* PaymentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PaymentModel.xcdatamodel; sourceTree = "<group>"; };
+		3724EA302D61C2C000860463 /* AddUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,10 @@
 			children = (
 				3724EA0B2D61AFBB00860463 /* youtubeApp.swift */,
 				3724EA0D2D61AFBB00860463 /* ContentView.swift */,
+				3724EA302D61C2C000860463 /* AddUserView.swift */,
+				3724EA1B2D61B4C500860463 /* PaymentManager.swift */,
+				3724EA1D2D61B8D100860463 /* PaymentModel.xcdatamodeld */,
+				3724EA192D61B44600860463 /* UserDetailView.swift */,
 				3724EA0F2D61AFBC00860463 /* Assets.xcassets */,
 				3724EA112D61AFBC00860463 /* Preview Content */,
 			);
@@ -137,8 +149,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3724EA1C2D61B4C500860463 /* PaymentManager.swift in Sources */,
 				3724EA0E2D61AFBB00860463 /* ContentView.swift in Sources */,
+				3724EA1F2D61B8D100860463 /* PaymentModel.xcdatamodeld in Sources */,
+				3724EA1A2D61B44600860463 /* UserDetailView.swift in Sources */,
 				3724EA0C2D61AFBB00860463 /* youtubeApp.swift in Sources */,
+				3724EA312D61C2C000860463 /* AddUserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +301,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.youtube";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourname.youtubeFamilyPayments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -314,7 +330,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.youtube";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourname.youtubeFamilyPayments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -344,6 +360,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3724EA1D2D61B8D100860463 /* PaymentModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3724EA1E2D61B8D100860463 /* PaymentModel.xcdatamodel */,
+			);
+			currentVersion = 3724EA1E2D61B8D100860463 /* PaymentModel.xcdatamodel */;
+			name = PaymentModel.xcdatamodeld;
+			path = /Users/yunaoguo/Desktop/youtube/youtube/PaymentModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3724EA002D61AFBB00860463 /* Project object */;
 }
