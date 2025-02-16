@@ -26,12 +26,13 @@ class PaymentManager: ObservableObject {
         }
     }
 
-    // Add a new user
-    func addNewUser() {
+    func addNewUser() -> User {
         let newUser = User(context: viewContext)
-        newUser.name = "New User" // Default name for new users
+        newUser.id = UUID()
+        newUser.name = "New User"
         saveContext()
-        fetchPaymentsAndUsers() // Reload users after adding
+        fetchPaymentsAndUsers()
+        return newUser
     }
 
     // Add a payment for a user

@@ -2,29 +2,33 @@ import SwiftUI
 import CoreData
 
 struct UserDetailView: View {
-    @State var user: User
+    @ObservedObject var user: User
     @State private var date: Date
     @State private var months: Int
     @EnvironmentObject var paymentManager: PaymentManager
     @Environment(\.presentationMode) var presentationMode
     
     init(user: User, paymentManager: PaymentManager) {
-        self._user = State(initialValue: user)
+        self.user = user
         
-        // Safely unwrap the first payment if it exists, otherwise set default values
         if let firstPayment = user.payments?.allObjects.first as? Payment {
-            self._date = State(initialValue: firstPayment.paidDate ?? Date())  // Use first payment date or fallback to current date
-            self._months = State(initialValue: Int(firstPayment.monthsCovered)) // Use first payment's monthsCovered or fallback
+            _date = State(initialValue: firstPayment.paidDate ?? Date())
+            _months = State(initialValue: Int(firstPayment.monthsCovered))
         } else {
-            self._date = State(initialValue: Date())  // Default to current date if no payments
-            self._months = State(initialValue: 1)    // Default to 1 month if no payments
+            _date = State(initialValue: Date())
+            _months = State(initialValue: 1)
         }
     }
     
     var body: some View {
         Form {
-            // Binding the name field to user.name
-            TextField("Name", text: Binding(get: { user.name ?? "" }, set: { user.name = $0 }))
+            TextField("Name", text: Binding(
+                get: { user.name ?? "" },
+                set: { newValue in
+                    user.name = newValue
+                    paymentManager.saveContext()
+                }
+            ))
             
             DatePicker("Paid Date", selection: $date, displayedComponents: .date)
             
@@ -32,11 +36,9 @@ struct UserDetailView: View {
             
             Button("Save") {
                 if let existingPayment = user.payments?.allObjects.first as? Payment {
-                    // Update existing payment
                     existingPayment.paidDate = date
                     existingPayment.monthsCovered = Int16(months)
                 } else {
-                    // Add new payment
                     paymentManager.addPayment(for: user, date: date, months: months)
                 }
                 paymentManager.saveContext()
@@ -44,8 +46,8 @@ struct UserDetailView: View {
             }
             
             Button("Delete User") {
-                paymentManager.deleteUser(user)  // Delete the user
-                presentationMode.wrappedValue.dismiss()  // Go back to the home screen
+                paymentManager.deleteUser(user)
+                presentationMode.wrappedValue.dismiss()
             }
             .foregroundColor(.red)
             .padding(.top, 10)

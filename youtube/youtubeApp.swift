@@ -4,12 +4,18 @@ import CoreData
 @main
 struct MyApp: App {
     let persistenceController = PersistenceController.shared
+    @StateObject private var paymentManager: PaymentManager
+    
+    init() {
+        let context = PersistenceController.shared.container.viewContext
+        _paymentManager = StateObject(wrappedValue: PaymentManager(context: context))
+    }
 
     var body: some Scene {
         WindowGroup {
             ContentView(context: persistenceController.container.viewContext)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(PaymentManager(context: persistenceController.container.viewContext)) // Inject PaymentManager here
+                .environmentObject(paymentManager)
         }
     }
 }
@@ -28,8 +34,31 @@ struct PersistenceController {
 
         container.loadPersistentStores { description, error in
             if let error = error {
-                fatalError("Unresolved error \(error)")
+                fatalError("Error loading Core Data store: \(error.localizedDescription)")
+            }
+        }
+        
+        // Configure the context to automatically merge changes
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    }
+    
+    func resetStore() {
+        let coordinator = container.persistentStoreCoordinator
+        for store in coordinator.persistentStores {
+            do {
+                try coordinator.remove(store)
+                try coordinator.destroyPersistentStore(at: store.url!, ofType: store.type, options: nil)
+            } catch {
+                print("Error removing or destroying persistent store: \(error.localizedDescription)")
+            }
+        }
+        
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Error reloading store: \(error.localizedDescription)")
             }
         }
     }
+
 }
